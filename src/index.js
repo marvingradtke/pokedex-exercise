@@ -22,11 +22,12 @@ setChild(resultsElement, allPokemonElements);
 searchInput.addEventListener('input', event => {
   const searchValue = event.target.value;
   const pokemons = getPokemonsByName(searchValue);
-  const pokemonElements = createPokemonElements(pokemons);
+
   if (pokemons.length > 0) {
     setChild(resultsElement, pokemonElements);
   } else {
-    setChild(resultsElement, createNoPokemons());
+    const noPokemonsElement = createNoPokemons();
+    setChild(resultsElement, noPokemonsElement);
   }
 });
 
