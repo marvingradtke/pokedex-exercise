@@ -1,0 +1,22 @@
+[
+  {
+    "name": "Marvimon",
+    "id": 1,
+    "kp": 1000
+  },
+  {
+    "name": "Hulkmon",
+    "id": 2,
+    "kp": 2500
+  },
+  {
+    "name": "Partymon",
+    "id": 3,
+    "kp": 100
+  },
+  {
+    "name": "Lazymon",
+    "id": 4,
+    "kp": 50
+  }
+]
