@@ -4,7 +4,7 @@
   "description": "Search and filter arrays example",
   "main": "index.js",
   "dependencies": {
-    "json-pokemon": "^1.0.0",
+    "babel-polyfill": "^6.26.0",
     "parcel-bundler": "^1.12.4"
   },
   "devDependencies": {

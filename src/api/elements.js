@@ -1,3 +1,4 @@
+import { getPokemonDetails } from './pokemons';
 /**
  * <div class="results__empty">
  *    No Pokemons found
@@ -16,7 +17,7 @@ export function createPokemonElements(pokemons) {
    * This function could receive an array of pokemons and creates elements for each of them.
    * You can use createPokemon to create a single element.
    */
-  const listElement = document.createElement('ul');
+  const listElement = document.createElement('div');
   pokemons.forEach(pokemon => {
     const pokemonElement = createPokemonElement(pokemon);
     listElement.appendChild(pokemonElement);
@@ -28,8 +29,12 @@ export function createPokemonElement(pokemon) {
   /**
    * This function could create a new element and displays the properties of a pokemon.
    */
-  const itemElement = document.createElement('li');
+  const itemElement = document.createElement('button');
   itemElement.innerHTML = pokemon.name;
+  itemElement.addEventListener('click', async () => {
+    const pokemonDetails = await getPokemonDetails(pokemon.url);
+    console.log(pokemonDetails);
+  });
   return itemElement;
 }
 

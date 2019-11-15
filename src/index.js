@@ -1,3 +1,5 @@
+import 'babel-polyfill';
+
 import {
   createNoPokemons,
   createPokemonElements,
@@ -9,33 +11,38 @@ import {
   getAllPokemons,
   sortPokemonsByName
 } from './api/pokemons';
+import { initPokemons } from './api/pokemons';
 
-// Query elements
-const searchInput = document.querySelector('.search__input');
-const resultsElement = document.querySelector('.results');
+initPokemons().then(start);
 
-// Get all pokemons
-const allPokemons = getAllPokemons();
-const allSortedPokemons = sortPokemonsByName(allPokemons);
-// Reset input and results
-resetInput(searchInput);
-const allPokemonElements = createPokemonElements(allSortedPokemons);
-setChild(resultsElement, allPokemonElements);
+function start() {
+  // Query elements
+  const searchInput = document.querySelector('.search__input');
+  const resultsElement = document.querySelector('.results');
 
-// Add event listeners
-searchInput.addEventListener('input', event => {
-  const searchValue = event.target.value;
-  const pokemons = getPokemonsByName(searchValue);
+  // Get all pokemons
+  const allPokemons = getAllPokemons();
+  const allSortedPokemons = sortPokemonsByName(allPokemons);
+  // Reset input and results
+  resetInput(searchInput);
+  const allPokemonElements = createPokemonElements(allSortedPokemons);
+  setChild(resultsElement, allPokemonElements);
 
-  if (pokemons.length === 0) {
-    const noPokemonsElement = createNoPokemons();
-    setChild(resultsElement, noPokemonsElement);
-  } else {
-    const sortedPokemons = sortPokemonsByName(pokemons);
-    const pokemonElements = createPokemonElements(sortedPokemons);
-    setChild(resultsElement, pokemonElements);
-  }
-});
+  // Add event listeners
+  searchInput.addEventListener('input', event => {
+    const searchValue = event.target.value;
+    const pokemons = getPokemonsByName(searchValue);
+
+    if (pokemons.length === 0) {
+      const noPokemonsElement = createNoPokemons();
+      setChild(resultsElement, noPokemonsElement);
+    } else {
+      const sortedPokemons = sortPokemonsByName(pokemons);
+      const pokemonElements = createPokemonElements(sortedPokemons);
+      setChild(resultsElement, pokemonElements);
+    }
+  });
+}
 
 /**
  * Later, you can add sort functionality.
